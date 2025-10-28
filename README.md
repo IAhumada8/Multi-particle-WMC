@@ -41,7 +41,7 @@ mpic++ -O3 -funroll-loops -march=native -o your_executable 2PYloopsMPI.cpp
 
 - For HPC clusters with GSL (if using non-linear fit)
 ```bash
-mpic++ -O3 -funroll-loops -march=native -o  $(pkg-config --cflags --libs gsl) -Wl,-rpath,$(pkg-config --variable=libdir gsl):$(pkg-config --variable=libdir openblas) your_executable 2PYloopsMPI.cpp
+mpic++ -O3 -funroll-loops -march=native -o  $(pkg-config --cflags --libs gsl) -Wl,-rpath,$(pkg-config --variable=libdir gsl):$(pkg-config --variable=libdir openblas) your_executable 3PYloopsMPI.cpp
 ````
 NOTE: The flags required to run the code with the GSL library may vary depending on each cluster, contact your HPC admin to find out which flags to use.
 
@@ -59,7 +59,7 @@ mpirun --use-hwthread-cpus -np 8 ./your_executable --output="Your_file_name.txt"
 
 - For HPC clusters
 ```bash
-mpirun --use-hwthread-cpus -np 8 ./your_executable
+mpirun --use-hwthread-cpus -np 64 ./your_executable
 ````
 NOTE: On SLURM-managed clusters, you can also choose your file name instead of the default, but you won't be able to override the name if you use the same name, which will cause a failure and the code won't run. It's recommended to use the default name or always use different names for the --output flag.
 
