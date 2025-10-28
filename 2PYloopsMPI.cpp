@@ -5,9 +5,6 @@
  *              Monte Carlo simulations using MPI for two-particle quantum
  *              systems with Coulomb and square well potentials.
  * 
- * 
- * Repository: https://github.com/yourusername/yloop-mpi-simulator
- * 
  ******************************************************************************/
 
 #define _USE_MATH_DEFINES  // Allows the use of mathematical constants,
@@ -574,4 +571,5 @@ int main(int argc, char** argv) {
     
     MPI_Finalize();
     return 0;
+
 }
