@@ -221,17 +221,6 @@ inline double safe_exp(double x) {
 /*!
  *
  * @function	safe_exp_erfc
- * @abstract	Compute the safe exponential times complementary error function.
- * @discussion	
- * @param		x   
- * @param		L   The length scale.
- * @result		
- *
- */
-
-/*!
- *
- * @function	safe_exp_erfc
  * @abstract	Compute exponential times complementary error function safely.
  * @param		x	The argument value.
  * @param		L	The length scale parameter.
@@ -676,4 +665,5 @@ int main(int argc, char** argv) {
     
     MPI_Finalize();
     return 0;
+
 }
