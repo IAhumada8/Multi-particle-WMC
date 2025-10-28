@@ -1,10 +1,10 @@
-# About the WMC MPI C++ code - Two Particle Quantum Systems
+# About the WMC MPI C++ code - Multi-Particle Quantum Systems
 
-Parallel implementation of the Yloop algorithm for Worldline Monte Carlo simulations of two-particle quantum systems using MPI.
+Parallel implementation of the Yloop algorithm for Worldline Monte Carlo simulations of multi-particle quantum systems using MPI.
 
 ## Overview
 
-This code implements the Yloop algorithm in the Worldline Monte Carlo (WMC) formalism for simulating two-particle quantum systems with parallel computation using MPI. The algorithm generates Brownian loops to compute quantum propagators and extract ground state energies.
+This code implements the Yloop algorithm in the Worldline Monte Carlo (WMC) formalism for simulating two(or more)-particle quantum systems with parallel computation using MPI. The algorithm generates Brownian loops to compute quantum propagators and extract ground state energies.
 
 ## Features
 
@@ -17,11 +17,37 @@ This code implements the Yloop algorithm in the Worldline Monte Carlo (WMC) form
 
 ### Prerequisites
 
+- C++ compatible compiler
 - MPI implementation (OpenMPI, MPICH, etc.)
-- C++11 compatible compiler
 - Linux/Unix environment (for cluster execution)
 
 ### Compilation
 
+- For personal computers or workstations
 ```bash
-mpic++ -O3 -std=c++11 -o yloop_simulator main.cpp
+mpic++ -O3 -o your_executable 2PYloopsMPI.cpp
+```
+
+- For HPC clusters (Recommended flags)
+```bash
+mpic++ -O3 -funroll-loops -march=native -o your_executable 2PYloopsMPI.cpp
+````
+
+### Code execution
+
+- For personal computers or workstations
+```bash
+mpirun --use-hwthread-cpus -np 8 ./your_executable
+```
+
+- For personal computers or workstations (modifying the output file name)
+```bash
+mpirun --use-hwthread-cpus -np 8 ./your_executable --output="Your_file_name.txt"
+```
+
+- For HPC clusters
+```bash
+mpirun --use-hwthread-cpus -np 8 ./your_executable
+````
+NOTE: On SLURM-managed clusters, you can also choose your file name instead of the default, but you won't be able to override the name if you use the same name, which will cause a failure and the code won't run. It's recommended to use the default name or always use different names for the --output flag.
+
