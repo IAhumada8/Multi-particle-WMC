@@ -26,22 +26,22 @@ This code implements the Yloop algorithm in the Worldline Monte Carlo (WMC) form
 
 - For personal computers or workstations
 ```bash
-mpic++ -O3 -o your_executable 2PYloopsMPI.cpp
+mpic++ -O3 2PYloopsMPI.cpp -o your_executable
 ```
 
 - For personal computers or workstations with GSL (if using non-linear fit)
 ```bash
-mpic++ -O3 -o your_executable 3PYloopsMPI.cpp -lgsl -lgslcblas -lm
+mpic++ -O3 -o 3PYloopsMPI.cpp your_executable -lgsl -lgslcblas -lm
 ```
 
 - For HPC clusters (Recommended flags)
 ```bash
-mpic++ -O3 -funroll-loops -march=native -o your_executable 2PYloopsMPI.cpp
+mpic++ -O3 -funroll-loops -march=native 2PYloopsMPI.cpp -o your_executable 
 ````
 
 - For HPC clusters with GSL (if using non-linear fit)
 ```bash
-mpic++ -O3 -funroll-loops -march=native -o  $(pkg-config --cflags --libs gsl) -Wl,-rpath,$(pkg-config --variable=libdir gsl):$(pkg-config --variable=libdir openblas) your_executable 3PYloopsMPI.cpp
+mpic++ -O3 -funroll-loops -march=native $(pkg-config --cflags --libs gsl) -Wl,-rpath,$(pkg-config --variable=libdir gsl):$(pkg-config --variable=libdir openblas) 3PYloopsMPI.cpp -o your_executable
 ````
 NOTE: The flags required to run the code with the GSL library may vary depending on each cluster, contact your HPC admin to find out which flags to use.
 
